@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+    
+	<head>
+        
+		<meta charset="utf-8">
+        
+		<title>Garage</title>
+        
+		<link rel="stylesheet" href="css/ProjetGaragiste.css">
+        
+		<script src="js/ProjetGaragiste.js"></script>
+        
+	</head>
+    
+	<body>
+        
+        <nav class="navbar">
+            
+            <ul>
+                
+              <li><a href="#Formulaire">Formulaire</a></li>
+                
+              <li><a href="#RDV">RDV</a></li>
+                
+              <li><a href="#Informations">Informations</a></li>
+                
+            </ul>
+            
+        </nav>
+        
+        <section id="Formulaire"> 
+            
+        <h1>Prenez rendez-vous !</h1>
+            
+        <form name="formClient" onSubmit="envoyerForm();">
+            
+                <fieldset>
+                    
+                    <legend>Prise de Rendez-vous</legend>
+                    
+                    <label for="nom">Nom</label><em>*</em>
+                    
+                    <input type="text" id="nom" name="Nom"><br><br>
+                    
+                    <label for="prenom">Prénom</label><em>*</em>
+                    
+                    <input type="text" id="prenom" name="Prenom"><br><br>
+                    
+                    <label for="date">Date</label><em>*</em>
+                    
+                    <input type="date" id="date" name="Date" min="" value=""><br><br>
+                    
+                    <label for="time">Heure</label><em>*</em>
+                    
+                    <input type="time" id="time" name="Heure" min="" max="18:00" value=""><br><br>
+                    
+                </fieldset>
+            
+                <fieldset>
+                    
+                    <legend>Services (au choix)</legend>
+                    
+                    <input type="checkbox" class="serv" name="Reparationpneu">Réparation crevaison de pneu<br><br>
+                    
+                    <input type="checkbox" class="serv" name="Diaelec">Diagnostic électroniques<br><br>
+                    
+                    <input type="checkbox" class="serv" name="Diafrein">Diagnostic freinage<br><br>
+                    
+                    <input type="checkbox" class="serv" name="Diatenue">Diagnostic tenue de route<br><br>
+                    
+                    <input type="checkbox" class="serv" name="Diabatt">Diagnostic batterie et circuit de charge<br><br>
+                    
+                    <label for="promo">Code Promo :</label>
+                    
+                    <input type="text" id="promo" name="Promo"><br><br>
+                    
+                    <input type="submit" value="Envoyer le formulaire">
+                    
+                    <input type="reset" value ="Réinitialiser">
+                    
+                </fieldset> 
+            
+            </form>
+            
+        </section>
+        
+        <section id="RDV">
+            
+        <h1>RDV</h1>
+            
+            <ul id="Calendrier">
+                
+            </ul>
+            
+        <h2>Rappel :</h2>
+            
+        <ul>
+            
+            <li>Soyez présents 1/4 d'heure avant l'heure de rendez-vous</li>
+            
+            <li>Le montant à regler sur place est de : </li>
+            
+            <li>Le paiement sur place peut s'effectuer par cash, par bancontact ou par carte de crédit</li>
+            
+            <li>Le port du masque est OBLIGATOIRE dans l'enceinte de notre établissement</li>
+            
+        </ul>  
+            
+        </section>
+        
+        <section id="Informations">
+        
+        <h1>Informations</h1>
+            
+        </section>
+        
+	</body>
+    
+</html>
