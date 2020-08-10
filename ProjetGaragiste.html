@@ -33,7 +33,7 @@
             
         <h1>Prenez rendez-vous !</h1>
             
-        <form name="formClient" onSubmit="envoyerForm();">
+        <form name="formClient" onSubmit="envoyerForm();return false">
             
                 <fieldset>
                     
@@ -41,11 +41,11 @@
                     
                     <label for="nom">Nom</label><em>*</em>
                     
-                    <input type="text" id="nom" name="Nom"><br><br>
+                    <input type="text" id="nom" name="Nom" required><br><br>
                     
                     <label for="prenom">Prénom</label><em>*</em>
                     
-                    <input type="text" id="prenom" name="Prenom"><br><br>
+                    <input type="text" id="prenom" name="Prenom" required><br><br>
                     
                     <label for="date">Date</label><em>*</em>
                     
@@ -87,23 +87,28 @@
         
         <section id="RDV">
             
-        <h1>RDV</h1>
+        <h1 class="RDV">Remplissez d'abord le formulaire !</h1>
             
-            <ul id="Calendrier">
-                
-            </ul>
+            <div class="calendrier">
+                <p id="Mois"></p>
+                <p id="Jour"></p>
+                <p id="NumeroJour"></p>
+                <p id="Annee"></p>
+            </div>
+            <div class="texte">
+                <p class="para1"></p>
+                <p class="para2"></p>
+            </div>
             
         <h2>Rappel :</h2>
             
         <ul>
             
-            <li>Soyez présents 1/4 d'heure avant l'heure de rendez-vous</li>
+            <li>Soyez présents 1/4 d'heure avant l'heure de rendez-vous !</li>
             
-            <li>Le montant à regler sur place est de : </li>
+            <li>Le paiement sur place peut s'effectuer par cash, par bancontact ou par carte de crédit.</li>
             
-            <li>Le paiement sur place peut s'effectuer par cash, par bancontact ou par carte de crédit</li>
-            
-            <li>Le port du masque est OBLIGATOIRE dans l'enceinte de notre établissement</li>
+            <li>Le port du masque est OBLIGATOIRE dans l'enceinte de notre établissement.</li>
             
         </ul>  
             
@@ -112,6 +117,23 @@
         <section id="Informations">
         
         <h1>Informations</h1>
+            
+        <h2>Diagnostic électronique</h2>
+        <p></p>
+            
+        <h2>Diagnostic freinage</h2>
+        <h3>Pourquoi ?</h3>
+        <ul>
+            <li>Le témoin de vos freins s'allume.</li><img src="img/T%C3%A9moin_de_freinage.webp" height="100px" width="100px" />
+            <li>Votre voiture se déporte d'un côté lorsque vous freinez.</li>
+            <li>Votre pédale de frein est molle, sans résistance.</li>
+        </ul>
+            
+        <h2>Diagnostic tenue de route</h2>
+        <p></p>
+            
+        <h2>Diagnostic batterie et circuit de charge</h2>
+        <p></p>
             
         </section>
         

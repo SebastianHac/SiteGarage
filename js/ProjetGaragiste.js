@@ -6,27 +6,29 @@ document.addEventListener("DOMContentLoaded", loadDateTime);
 
 let cout = 0;
 const tabMois = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+const tabJours = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
 let tabServices = [];
+const auj = new Date();//Pour récupérer la date d'aujourd'hui
+const demain = new Date();//Pour récupérer la date de demain
+demain.setDate(demain.getDate() + 1);
+var timeH = auj.getHours();// Pour récupérer l'heure actuelle
+var timeM = auj.getMinutes()+30;// car je veux que le client arrive 15 minutes à l'avance, et je donne 15 minutes pour qu'il arrive
+
+
 
 //Délimiter la date et l'heure min pour le date picker et l'input "Time" à aujourd'hui
 
 function loadDateTime(){
     
-const auj = new Date();//Pour récupérer la date d'aujourd'hui
 var jj = auj.getDate();
 var mm = auj.getMonth()+1; // car Janvier vaut 0
 var aaaa = auj.getFullYear();
     
-const demain = new Date();//Pour récupérer la date de demain
-demain.setDate(demain.getDate() + 1);
 var jj2 = demain.getDate();
 var mm2 = demain.getMonth();
 var aaaa2 = demain.getFullYear();
 
-var timeH = auj.getHours();// Pour récupérer l'heure actuelle
-var timeM = auj.getMinutes()+30;// car je veux que le client arrive 15 minutes à l'avance, et je donne 15 minutes pour qu'il arrive
-
-    if (jj<10){
+    if (jj<10){// or jj.length < 2
         jj = "0" + jj;
     }
     if (mm<10){
@@ -121,7 +123,37 @@ function envoyerForm(){
         cout -= cout*(15/100);
         cout = cout.toFixed(2);
     }
+    
     let donnees = [nom, prenom, date, heure, cout];
     alert(donnees);
     
+    let dateChoix = new Date(date);
+    let numeroJour = dateChoix.getDay();
+    let nomJour = tabJours[numeroJour];
+    let tabDate = date.split("-");//"2020-08-23" => [2020, 08, 23]
+    tabDate.push(nomJour);// [2020, 08, 23, dimanche]
+    let nomMois = tabMois[(tabDate[1])-1]; // 08 -> Août
+    
+    console.log(tabServices);
+    
+    let listServices = "";
+    for (let i = 0; i < tabServices.length; i++){
+        listServices += tabServices[i] + ", ";
+    }
+    
+    let documentSection = document.querySelector("section#RDV");
+    documentSection.querySelector("h1.RDV").textContent = "À très bientôt !";
+    
+    document.getElementById("Mois").innerHTML = nomMois;
+    document.getElementById("Jour").innerHTML = tabDate[3];
+    document.getElementById("NumeroJour").innerHTML = tabDate[2];
+    document.getElementById("Annee").innerHTML = tabDate[0];
+    
+    let documentDiv = document.querySelector("div.texte");
+    documentDiv.querySelector("p.para1").textContent = prenom + " " + nom + " est attendu le " + nomJour + " " + numeroJour + " " + tabMois[(tabDate[1])-1] + " à " + heure + " pour une examination de sa voiture.";
+    documentDiv.querySelector("p.para2").textContent = "Le(s) service(s) demandé(s) :" + " " + listServices + " sera/seront facturés à hauteur de " + cout + " €.";
+    
+    tabServices = [];// pour remettre à zéro la liste des services demandés
+    cout = 0;// pour remettre à zero le compteur après utilisation du formulaire
 }
+

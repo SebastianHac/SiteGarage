@@ -2,9 +2,12 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background: white;
     color: #000;
-    line-height: 1.2;
     height: 100vh;
 }
+
+
+/* NAVBAR */
+
 
 .navbar {
     position: fixed;
@@ -48,6 +51,56 @@ section{
     
 }
 
+
+/* SECTION */
+
 section h1{
     font-size: 40px;
 }
+
+.calendrier {
+    text-align: center;
+    width: 220px;
+    background: rgba(0,0,0,0.2);
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+
+/* RDV (Calendrier)*/
+
+#Mois {
+    position: relative;
+    background: red;
+    margin-top: auto;
+    padding: 5px, 10px;
+    font-size: 50px;
+    font-weight: 700;
+    border-radius: 5px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    color: white;
+}
+
+#Jour {
+    margin-top: 20px;
+    font-size: 35px;
+    font-weight: 180px;
+    color: rgb(100, 97, 97);   
+}
+
+#NumeroJour {
+    font-size: 80px;
+    font-weight: ;
+    color: rgb(220, 10, 10);
+}
+
+#Annee {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: rgb(100, 97, 97);
+}
+
+
+/* INFORMATIONS */
