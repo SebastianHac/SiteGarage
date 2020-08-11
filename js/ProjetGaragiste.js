@@ -100,23 +100,23 @@ function envoyerForm(){
         return;
     }
     if (cb[0].checked){
-        tabServices += "Réparation crevaison de pneu";
+        tabServices.push("Réparation crevaison de pneu");
         cout += 25;
     }
     if (cb[1].checked){
-        tabServices += "Diagnostic électroniques";
+        tabServices.push("Diagnostic électroniques");
         cout += 54.78;
     }
     if (cb[2].checked){
-        tabServices += "Diagnostic freinage";
+        tabServices.push("Diagnostic freinage");
         cout += 35;
     }
     if (cb[3].checked){
-        tabServices += "Diagnostic tenue de route";
+        tabServices.push("Diagnostic tenue de route");
         cout += 29.99;
     }
     if (cb[4].checked){
-        tabServices += "Diagnostic batterie et circuit de charge";
+        tabServices.push("Diagnostic batterie et circuit de charge");
         cout += 15.99;
     }
     if (code == "seb"){
