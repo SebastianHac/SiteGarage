@@ -35,7 +35,7 @@
         
         <h1>Prenez rendez-vous !</h1>
             
-        <form name="formClient" onSubmit="envoyerForm();return false">
+        <form class="formulaire" name="formClient" onSubmit="envoyerForm();return false">
             
                 <fieldset>
                     
@@ -45,9 +45,13 @@
                     
                     <input type="text" id="nom" name="Nom" required><br><br>
                     
+                    <div id="errNom"></div>
+                    
                     <label for="prenom">Prénom</label><em>*</em>
                     
                     <input type="text" id="prenom" name="Prenom" required><br><br>
+                    
+                    <div id="errPrenom"></div>
                     
                     <label for="date">Date</label><em>*</em>
                     
@@ -79,7 +83,7 @@
                     
                     <input type="submit" value="Envoyer le formulaire">
                     
-                    <input type="reset" value ="Réinitialiser">
+                    <input type="reset" value ="Réinitialiser" onclick="reset();">
                     
                 </fieldset> 
             

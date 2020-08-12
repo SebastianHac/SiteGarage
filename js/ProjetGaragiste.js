@@ -1,8 +1,11 @@
 "use strict"
 
-document.addEventListener("DOMContentLoaded", loadDateTime);
+/* document.addEventListener("DOMContentLoaded", loadDateTime); */
 
 //Variables Globales
+
+/* let obj = new Object();
+ obj */
 
 let cout = 0;
 const tabMois = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
@@ -18,7 +21,7 @@ var timeM = auj.getMinutes()+30;// car je veux que le client arrive 15 minutes �
 
 //Délimiter la date et l'heure min pour le date picker et l'input "Time" à aujourd'hui
 
-function loadDateTime(){
+/* function loadDateTime(){
     
 var jj = auj.getDate();
 var mm = auj.getMonth()+1; // car Janvier vaut 0
@@ -70,17 +73,49 @@ let aujHeure = timeH + ":" + timeM;
         document.getElementById("time").setAttribute("value", aujHeure);
     }
     
-}
+} */
 
 // fonction validation formulaire
+function reset(){
+    document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "";
+    document.querySelector("form.formulaire").querySelector("div#errNom").textContent = "";
+}// pour reset les divs errNom et errPrenom quand on appuie sur le reset
 
-function validerForm(f){
-    var err = 0; //compteur
-    let nom = f.Nom.value;
-    if (! nom){
-        err ++;
+function hasNumbers(t) { 
+    var regex = /\d/g; return regex.test(t);
+}
+
+ function validerFormPrenom(prenom){
+    if (hasNumbers(prenom)){
+        return false;
     }
-    return !err;
+    else {
+        return true;
+    }
+}
+
+function validerFormNom(nom){
+    if (hasNumbers(nom)){
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function réinitialiserRDV(){
+        documentSection.querySelector("h1.RDV").textContent = "Remplissez d'abord le formulaire !";
+        document.getElementById("Mois").innerHTML = "";
+        document.getElementById("Jour").innerHTML = "";
+        document.getElementById("NumeroJour").innerHTML = "";
+        document.getElementById("Annee").innerHTML = "";
+
+        let documentDiv = document.querySelector("div.texte");
+        documentDiv.querySelector("p.para1").textContent = "";
+        documentDiv.querySelector("p.para2").textContent = "";
+        
+        /*var formulaire = document.getElementById("Formulaire");
+        formulaire.scrollIntoView();*/
 }
 
 function envoyerForm(){
@@ -124,9 +159,6 @@ function envoyerForm(){
         cout = cout.toFixed(2);
     }
     
-    let donnees = [nom, prenom, date, heure, cout];
-    alert(donnees);
-    
     let dateChoix = new Date(date);
     let numeroJour = dateChoix.getDay();
     let nomJour = tabJours[numeroJour];
@@ -134,24 +166,50 @@ function envoyerForm(){
     tabDate.push(nomJour);// [2020, 08, 23, dimanche]
     let nomMois = tabMois[(tabDate[1])-1]; // 08 -> Août
     
-    console.log(tabServices);
-    
     let listServices = "";
     for (let i = 0; i < tabServices.length; i++){
         listServices += tabServices[i] + ", ";
     }
     
-    let documentSection = document.querySelector("section#RDV");
-    documentSection.querySelector("h1.RDV").textContent = "À très bientôt !";
+    if (validerFormPrenom(prenom) && validerFormNom(nom)){
+        let documentSection = document.querySelector("section#RDV");
+        documentSection.querySelector("h1.RDV").textContent = "À très bientôt !";
     
-    document.getElementById("Mois").innerHTML = nomMois;
-    document.getElementById("Jour").innerHTML = tabDate[3];
-    document.getElementById("NumeroJour").innerHTML = tabDate[2];
-    document.getElementById("Annee").innerHTML = tabDate[0];
+        document.getElementById("Mois").innerHTML = nomMois;
+        document.getElementById("Jour").innerHTML = tabDate[3];
+        document.getElementById("NumeroJour").innerHTML = tabDate[2];
+        document.getElementById("Annee").innerHTML = tabDate[0];
+
+        let documentDiv = document.querySelector("div.texte");
+        documentDiv.querySelector("p.para1").textContent = prenom + " " + nom + " est attendu le " + nomJour + " " + numeroJour + " " + tabMois[(tabDate[1])-1] + " à " + heure + " pour une examination de sa voiture.";
+        documentDiv.querySelector("p.para2").textContent = "Le(s) service(s) demandé(s) :" + " " + listServices + " sera/seront facturés à hauteur de " + cout + " €.";
+        
+        var rdv = document.getElementById("RDV");
+        rdv.scrollIntoView();
+    }
     
-    let documentDiv = document.querySelector("div.texte");
-    documentDiv.querySelector("p.para1").textContent = prenom + " " + nom + " est attendu le " + nomJour + " " + numeroJour + " " + tabMois[(tabDate[1])-1] + " à " + heure + " pour une examination de sa voiture.";
-    documentDiv.querySelector("p.para2").textContent = "Le(s) service(s) demandé(s) :" + " " + listServices + " sera/seront facturés à hauteur de " + cout + " €.";
+    else if (! validerFormPrenom(prenom) && validerFormNom(nom)){
+        document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "Le Prénom ne peut pas contenir un/plusieurs chiffre(s)";
+        document.querySelector("form.formulaire").querySelector("div#errNom").textContent = "";
+        
+        /* réinitialiserRDV(); */
+    }
+    
+     else if (! validerFormNom(nom) && validerFormPrenom){
+        document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "";
+        document.querySelector("form.formulaire").querySelector("div#errNom").textContent = "Le Nom ne peut pas contenir un/plusieurs chiffre(s)";
+         
+        /*réinitialiserRDV();*/
+         
+    }
+    
+    else {
+        document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "Le Prénom ne peut pas contenir un/plusieurs chiffre(s)";
+        document.querySelector("form.formulaire").querySelector("div#errNom").textContent = "Le Nom ne peut pas contenir un/plusieurs chiffre(s)";
+        
+        /*réinitialiserRDV();*/
+    }
+
     
     tabServices = [];// pour remettre à zéro la liste des services demandés
     cout = 0;// pour remettre à zero le compteur après utilisation du formulaire
