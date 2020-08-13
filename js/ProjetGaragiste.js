@@ -1,6 +1,6 @@
 "use strict"
 
-/* document.addEventListener("DOMContentLoaded", loadDateTime); */
+document.addEventListener("DOMContentLoaded", loadDateTime);
 
 //Variables Globales
 
@@ -21,7 +21,7 @@ var timeM = auj.getMinutes()+30;// car je veux que le client arrive 15 minutes �
 
 //Délimiter la date et l'heure min pour le date picker et l'input "Time" à aujourd'hui
 
-/* function loadDateTime(){
+ function loadDateTime(){
     
 var jj = auj.getDate();
 var mm = auj.getMonth()+1; // car Janvier vaut 0
@@ -73,7 +73,7 @@ let aujHeure = timeH + ":" + timeM;
         document.getElementById("time").setAttribute("value", aujHeure);
     }
     
-} */
+} 
 
 // fonction validation formulaire
 function reset(){
@@ -181,7 +181,7 @@ function envoyerForm(){
         document.getElementById("Annee").innerHTML = tabDate[0];
 
         let documentDiv = document.querySelector("div.texte");
-        documentDiv.querySelector("p.para1").textContent = prenom + " " + nom + " est attendu le " + nomJour + " " + numeroJour + " " + tabMois[(tabDate[1])-1] + " à " + heure + " pour une examination de sa voiture.";
+        documentDiv.querySelector("p.para1").textContent = prenom + " " + nom + " est attendu le " + nomJour + " " + tabDate[2] + " " + tabMois[(tabDate[1])-1] + " à " + heure + " pour une examination de sa voiture.";
         documentDiv.querySelector("p.para2").textContent = "Le(s) service(s) demandé(s) :" + " " + listServices + " sera/seront facturés à hauteur de " + cout + " €.";
         
         var rdv = document.getElementById("RDV");
