@@ -104,7 +104,7 @@ form fieldset#field1 div {
     font-size: 12px;
 }
 
-form fieldset#field2 input#bouton {
+form fieldset#field2 input.bouton {
     border: 0;
     background-color: #0477CC;
     color: white;
@@ -113,12 +113,12 @@ form fieldset#field2 input#bouton {
     cursor: pointer;
 }
 
-form fieldset#field2 input#bouton:hover{
+form fieldset#field2 input.bouton:hover{
     background-color: #045CCC;
 }
 
 form fieldset div#errNom, div#errPrenom {
-    color: red;
+    color: #D8152D;
 }
 
 

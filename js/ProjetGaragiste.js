@@ -1,6 +1,7 @@
 "use strict"
 
 document.addEventListener("DOMContentLoaded", loadDateTime);
+document.addEventListener("reset", resetErr);
 
 //Variables Globales
 
@@ -82,7 +83,7 @@ function hasNumbers(t) {
     var regex = /\d/g; return regex.test(t);
 }
 
- function validerFormPrenom(prenom){
+function validerFormPrenom(prenom){
     if (hasNumbers(prenom)){
         return false;
     }
@@ -221,3 +222,8 @@ function envoyerForm(){
     cout = 0;// pour remettre à zero le compteur après utilisation du formulaire
 }
 
+function resetErr(){
+    document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "";
+    document.querySelector("form.formulaire").querySelector("div#errNom").textContent = "";
+        
+}
