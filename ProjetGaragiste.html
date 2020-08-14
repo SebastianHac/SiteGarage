@@ -29,67 +29,66 @@
             
         </nav>
         
-        <section id="Formulaire"> 
-            
-        <div id="bordureForm">
+        <section id="Formulaire">
         
         <h1>Prenez rendez-vous !</h1>
             
         <form class="formulaire" name="formClient" onSubmit="envoyerForm();return false">
             
-                <fieldset>
+                <fieldset id="field1">
                     
                     <legend>Prise de Rendez-vous</legend>
                     
-                    <label for="nom">Nom</label><em>*</em>
+                    <label for="nom">Nom</label>
                     
                     <input type="text" id="nom" name="Nom" required><br><br>
                     
                     <div id="errNom"></div>
                     
-                    <label for="prenom">Prénom</label><em>*</em>
+                    <label for="prenom">Prénom</label>
                     
                     <input type="text" id="prenom" name="Prenom" required><br><br>
                     
                     <div id="errPrenom"></div>
                     
-                    <label for="date">Date</label><em>*</em>
+                    <label for="date">Date</label>
                     
                     <input type="date" id="date" name="Date" min="" value=""><br><br>
                     
-                    <label for="time">Heure</label><em>*</em>
+                    <label for="time">Heure</label>
                     
                     <input type="time" id="time" name="Heure" min="" max="18:00" value=""><br><br>
                     
                 </fieldset>
             
-                <fieldset>
+                <fieldset id="field2">
                     
                     <legend>Services (au choix)</legend>
                     
-                    <input type="checkbox" class="serv" name="Reparationpneu">Réparation crevaison de pneu<br><br>
+                    <input type="checkbox" class="serv" name="Reparationpneu">Réparation crevaison de pneu - (25€)<br><br>
                     
-                    <input type="checkbox" class="serv" name="Diaelec">Diagnostic électroniques<br><br>
+                    <input type="checkbox" class="serv" name="Diaelec">Diagnostic électroniques - (54,78€)<br><br>
                     
-                    <input type="checkbox" class="serv" name="Diafrein">Diagnostic freinage<br><br>
+                    <input type="checkbox" class="serv" name="Diafrein">Diagnostic freinage - (35€)<br><br>
                     
-                    <input type="checkbox" class="serv" name="Diatenue">Diagnostic tenue de route<br><br>
+                    <input type="checkbox" class="serv" name="Diatenue">Diagnostic tenue de route - (29,99€)<br><br>
                     
-                    <input type="checkbox" class="serv" name="Diabatt">Diagnostic batterie et circuit de charge<br><br>
+                    <input type="checkbox" class="serv" name="Diabatt">Diagnostic batterie et circuit de charge - (15,99€)<br><br>
                     
                     <label for="promo">Code Promo :</label>
                     
                     <input type="text" id="promo" name="Promo"><br><br>
                     
-                    <input type="submit" value="Envoyer le formulaire">
+                    <input type="submit" id="bouton" value="Envoyer le formulaire">
                     
-                    <input type="reset" value ="Réinitialiser" onclick="reset();">
+                    <input type="reset" id="bouton" value ="Réinitialiser" onclick="reset();">
                     
                 </fieldset> 
             
             </form>
             
-            </div>
+            <img src="img/promo.png">
+            <div id="textPromo">CODE PROMOTIONNEL : "seb".</div>
             
         </section>
         
@@ -107,18 +106,20 @@
                 <p class="para1"></p>
                 <p class="para2"></p>
             </div>
-            
+           
+        <div id="boxRappel">
         <h2>Rappel :</h2>
             
-        <ul>
+            <ul>
             
-            <li>Soyez présents 1/4 d'heure avant l'heure de rendez-vous !</li>
-            
-            <li>Le paiement sur place peut s'effectuer par cash, par bancontact ou par carte de crédit.</li>
-            
-            <li>Le port du masque est OBLIGATOIRE dans l'enceinte de notre établissement.</li>
-            
-        </ul>  
+                <li>Soyez présents 1/4 d'heure avant l'heure de rendez-vous !</li>
+
+                <li>Le paiement sur place peut s'effectuer par cash, par bancontact ou par carte de crédit.</li>
+
+                <li>Le port du masque est OBLIGATOIRE dans l'enceinte de notre établissement.</li>
+
+            </ul>  
+        </div>
             
         </section>
         
@@ -126,23 +127,37 @@
         
         <h1>Informations</h1>
             
-        <h2>Diagnostic électronique</h2>
-        <p></p>
+        <h2>Pourquoi devrais-je faire un ... ?</h2>
             
-        <h2>Diagnostic freinage</h2>
-        <h3>Pourquoi ?</h3>
-        <ul>
-            <li>Le témoin de vos freins s'allume.</li><img src="img/T%C3%A9moin_de_freinage.webp" height="100px" width="100px" />
-            <li>Votre voiture se déporte d'un côté lorsque vous freinez.</li>
-            <li>Votre pédale de frein est molle, sans résistance.</li>
-        </ul>
-            
-        <h2>Diagnostic tenue de route</h2>
-        <p></p>
-            
-        <h2>Diagnostic batterie et circuit de charge</h2>
-        <p></p>
-            
+        <div id="elec">  
+            <h3>Diagnostic électronique</h3>
+            <ul>
+                <li>Votre véhicule est tombé en panne</li>
+                <li>L'un de vos voyant est allumé sans raison apparente</li>
+            </ul>
+        </div>
+        <div id="frein">
+            <h3>Diagnostic freinage</h3>
+            <ul>
+                <li>Le témoin de vos freins s'allume.</li>
+                <li>Votre voiture se déporte d'un côté lorsque vous freinez.</li>
+                <li>Votre pédale de frein est molle, sans résistance.</li>
+            </ul>
+        </div>
+        <div id="route">
+            <h3>Diagnostic tenue de route</h3>
+            <ul>
+                <li>Vous sentez que votre véhicule est instable lorsque vous prenez un virage</li>
+                <li>Vous ressentez de manière anormale les rebondissement de votre voiture lorsque vous empruntez une route cahoteuse</li>    
+            </ul>
+        </div>
+        <div id="batterie">
+            <h3>Diagnostic batterie et circuit de charge</h3>
+            <ul>
+                <li>L'éclairage de vos feux est faible</li>
+                <li>Le voyant de la batterie apparait</li>
+            </ul>
+        </div>
         </section>
         
 	</body>

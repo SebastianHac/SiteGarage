@@ -4,9 +4,6 @@ document.addEventListener("DOMContentLoaded", loadDateTime);
 
 //Variables Globales
 
-/* let obj = new Object();
- obj */
-
 let cout = 0;
 const tabMois = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 const tabJours = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
@@ -100,6 +97,15 @@ function validerFormNom(nom){
     }
     else {
         return true;
+    }
+}
+
+function validerFormCheckbox(){
+    if (cb.length == 0){
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
