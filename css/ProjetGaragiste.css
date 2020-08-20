@@ -65,12 +65,27 @@ section#Formulaire{
     background-image: url(../img/background2.png);
 }
 
-section#Formulaire img{
-    width: 280px;
-    height: 280px;
+section#Formulaire img#affichePromo{
     position: absolute;
-    top: 150px;
-    right: 240px;
+    top: 195px;
+    right: 200px;
+}
+
+section#Formulaire img#afficheOuvert{
+    position: absolute;
+    top: 250px;
+    left: 282px;
+}
+
+section#Formulaire div#heureOuverture{
+    color: #D8152D;
+    font-style: oblique;
+    font-size: 25px;
+    position: absolute;
+    top: 490px;
+    left: 282px;
+    background-color: white;
+    border: solid #D8152D;
 }
 
 section#Formulaire div#textPromo {
@@ -119,6 +134,12 @@ form fieldset#field2 input.bouton:hover{
 
 form fieldset div#errNom, div#errPrenom {
     color: #D8152D;
+}
+
+div#heureOuverture {
+    font-size: 30px;
+    color: white;
+    background-color: #D8152D;
 }
 
 

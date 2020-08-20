@@ -5,10 +5,17 @@ document.addEventListener("reset", resetErr);
 
 //Variables Globales
 
-let cout = 0;
+// tableaux
+
+
 const tabMois = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 const tabJours = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
 let tabServices = [];
+
+
+// Date
+
+
 const auj = new Date();//Pour récupérer la date d'aujourd'hui
 const demain = new Date();//Pour récupérer la date de demain
 demain.setDate(demain.getDate() + 1);
@@ -47,9 +54,12 @@ let demainDate = aaaa2 + "-" + mm2 + "-" + jj2;
 document.getElementById("date").setAttribute("min", aujDate); // cannot read property setAttributes of null (pcq page était pas chargé entièrement avant que je change l'attribut)
 document.getElementById("date").setAttribute("value", aujDate);
 
-    if (timeM > 60){
+    if (timeM >= 60){
         timeM -= 60;
         timeH += 1;
+    }
+    if (timeH >= 24){
+        timeH -= 24;
     }
     
 let aujHeure = timeH + ":" + timeM;
@@ -59,7 +69,7 @@ let aujHeure = timeH + ":" + timeM;
         document.getElementById("time").setAttribute("value", "07:00");
     
     }
-    else if (Number(aujHeure.substr(0,2)) > 18){
+    else if (Number(aujHeure.substr(0,2)) >= 18){
         document.getElementById("date").setAttribute("min", demainDate);
         document.getElementById("date").setAttribute("value", demainDate);
         document.getElementById("time").setAttribute("min", "07:00");
@@ -74,73 +84,25 @@ let aujHeure = timeH + ":" + timeM;
 } 
 
 // fonction validation formulaire
-function reset(){
-    document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "";
-    document.querySelector("form.formulaire").querySelector("div#errNom").textContent = "";
-}// pour reset les divs errNom et errPrenom quand on appuie sur le reset
 
-function hasNumbers(t) { 
-    var regex = /\d/g; return regex.test(t);
-}
-
-function validerFormPrenom(prenom){
-    if (hasNumbers(prenom)){
+function onlyLetters(test){
+    if (test.match(/^[A-Za-zàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+$/)){
         return false;
     }
-    else {
+    else{
         return true;
     }
 }
 
-function validerFormNom(nom){
-    if (hasNumbers(nom)){
-        return false;
-    }
-    else {
-        return true;
-    }
-}
 
-function validerFormCheckbox(){
-    if (cb.length == 0){
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-function réinitialiserRDV(){
-        documentSection.querySelector("h1.RDV").textContent = "Remplissez d'abord le formulaire !";
-        document.getElementById("Mois").innerHTML = "";
-        document.getElementById("Jour").innerHTML = "";
-        document.getElementById("NumeroJour").innerHTML = "";
-        document.getElementById("Annee").innerHTML = "";
-
-        let documentDiv = document.querySelector("div.texte");
-        documentDiv.querySelector("p.para1").textContent = "";
-        documentDiv.querySelector("p.para2").textContent = "";
-        
-        /*var formulaire = document.getElementById("Formulaire");
-        formulaire.scrollIntoView();*/
-}
-
-function envoyerForm(){
+function envoyerForm(nom, prenom, form){
     
-    let form = document.formClient;
-    
-    let nom = form.Nom.value;
-    let prenom = form.Prenom.value;
     let date = form.Date.value;
     let heure = form.Heure.value;
+    let cout = 0;
     let code = form.Promo.value;
-    
     let cb = document.getElementsByClassName("serv");
     
-    if (cb.length == 0){
-        alert("Vous n'avez choisi aucun service !");
-        return;
-    }
     if (cb[0].checked){
         tabServices.push("Réparation crevaison de pneu");
         cout += 25;
@@ -163,12 +125,13 @@ function envoyerForm(){
     }
     if (code == "seb"){
         cout -= cout*(15/100);
-        cout = cout.toFixed(2);
     }
     
-    let dateChoix = new Date(date);
-    let numeroJour = dateChoix.getDay();
-    let nomJour = tabJours[numeroJour];
+    cout = cout.toFixed(2);
+
+    let dateChoix = new Date(date);//Thu Aug 20 2020 02:00:00 GMT+0200 (heure d’été d’Europe centrale)
+    let numeroJour = dateChoix.getDay();//valeur entre 0-6 qui correspond aux jours de la semaine
+    let nomJour = tabJours[numeroJour];// Jour de la semaine basé sur le num -> 4 = Jeudi
     let tabDate = date.split("-");//"2020-08-23" => [2020, 08, 23]
     tabDate.push(nomJour);// [2020, 08, 23, dimanche]
     let nomMois = tabMois[(tabDate[1])-1]; // 08 -> Août
@@ -178,7 +141,7 @@ function envoyerForm(){
         listServices += tabServices[i] + ", ";
     }
     
-    if (validerFormPrenom(prenom) && validerFormNom(nom)){
+ 
         let documentSection = document.querySelector("section#RDV");
         documentSection.querySelector("h1.RDV").textContent = "À très bientôt !";
     
@@ -188,42 +151,55 @@ function envoyerForm(){
         document.getElementById("Annee").innerHTML = tabDate[0];
 
         let documentDiv = document.querySelector("div.texte");
-        documentDiv.querySelector("p.para1").textContent = prenom + " " + nom + " est attendu le " + nomJour + " " + tabDate[2] + " " + tabMois[(tabDate[1])-1] + " à " + heure + " pour une examination de sa voiture.";
+        documentDiv.querySelector("p.para1").textContent = prenom + " " + nom + " est attendu(e) le " + nomJour + " " + tabDate[2] + " " + tabMois[(tabDate[1])-1] + " à " + heure + " pour une examination de sa voiture.";
         documentDiv.querySelector("p.para2").textContent = "Le(s) service(s) demandé(s) :" + " " + listServices + " sera/seront facturés à hauteur de " + cout + " €.";
         
         var rdv = document.getElementById("RDV");
         rdv.scrollIntoView();
-    }
-    
-    else if (! validerFormPrenom(prenom) && validerFormNom(nom)){
-        document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "Le Prénom ne peut pas contenir un/plusieurs chiffre(s)";
-        document.querySelector("form.formulaire").querySelector("div#errNom").textContent = "";
-        
-        /* réinitialiserRDV(); */
-    }
-    
-     else if (! validerFormNom(nom) && validerFormPrenom){
-        document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "";
-        document.querySelector("form.formulaire").querySelector("div#errNom").textContent = "Le Nom ne peut pas contenir un/plusieurs chiffre(s)";
-         
-        /*réinitialiserRDV();*/
-         
-    }
-    
-    else {
-        document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "Le Prénom ne peut pas contenir un/plusieurs chiffre(s)";
-        document.querySelector("form.formulaire").querySelector("div#errNom").textContent = "Le Nom ne peut pas contenir un/plusieurs chiffre(s)";
-        
-        /*réinitialiserRDV();*/
-    }
+  
 
     
     tabServices = [];// pour remettre à zéro la liste des services demandés
     cout = 0;// pour remettre à zero le compteur après utilisation du formulaire
 }
 
+
 function resetErr(){
     document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "";
     document.querySelector("form.formulaire").querySelector("div#errNom").textContent = "";
-        
+}
+
+
+function validerForm(){
+    
+    let form = document.formClient;
+    let nom = form.Nom.value;
+    let prenom = form.Prenom.value;
+    let documentForm = document.querySelector("form.formulaire");
+    
+    if (onlyLetters(nom) && onlyLetters(prenom)){
+        documentForm.querySelector("div#errPrenom").textContent = "Le Prénom ne peut contenir que des lettres!";
+        documentForm.querySelector("div#errNom").textContent = "Le Nom ne peut contenir que des lettres!";
+    }
+    
+    else if (onlyLetters(nom)){
+        documentForm.querySelector("div#errPrenom").textContent = "";
+        documentForm.querySelector("div#errNom").textContent = "Le Nom ne peut contenir que des lettres!";
+    }
+    
+    else if (onlyLetters(prenom)){
+        documentForm.querySelector("div#errPrenom").textContent = "Le Prénom ne peut contenir que des lettres!";
+        documentForm.querySelector("div#errNom").textContent = "";
+    }
+    
+    else if(document.querySelectorAll('input[type="checkbox"]:checked').length == 0){
+        alert("Vous devez au moins sélectionner un service !");
+    }
+    
+    else{
+        documentForm.querySelector("div#errPrenom").textContent = "";
+        documentForm.querySelector("div#errNom").textContent = "";
+        envoyerForm(nom, prenom, form);
+    }
+    
 }

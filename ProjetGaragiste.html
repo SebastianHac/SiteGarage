@@ -33,7 +33,7 @@
         
         <h1>Prenez rendez-vous !</h1>
             
-        <form class="formulaire" name="formClient" onSubmit="envoyerForm();return false">
+        <form class="formulaire" name="formClient" onSubmit="validerForm();return false">
             
                 <fieldset id="field1">
                     
@@ -65,9 +65,10 @@
                     
                     <legend>Services (au choix)</legend>
                     
+                    
                     <input type="checkbox" class="serv" name="Reparationpneu">Réparation crevaison de pneu - (25€)<br><br>
                     
-                    <input type="checkbox" class="serv" name="Diaelec">Diagnostic électroniques - (54,78€)<br><br>
+                    <input type="checkbox" class="serv" name="Diaelec">Diagnostics électroniques - (54,78€)<br><br>
                     
                     <input type="checkbox" class="serv" name="Diafrein">Diagnostic freinage - (35€)<br><br>
                     
@@ -82,13 +83,16 @@
                     <input type="submit" class="bouton" value="Envoyer le formulaire">
                     
                     <input type="reset" class="bouton" value ="Réinitialiser" onclick="reset();">
+                        
                     
                 </fieldset> 
             
             </form>
             
-            <img src="img/promo.png">
-            <div id="textPromo">CODE PROMOTIONNEL : "seb".</div>
+            <img id="affichePromo" src="img/promo2.png">
+            <div id="textPromo">&nbsp; CODE PROMOTIONNEL : "seb" &nbsp;</div>
+            <img id="afficheOuvert" src="img/7sur7_4.png">
+            <div id="heureOuverture">&nbsp; De 07:00 à 18:00 &nbsp;</div>
             
         </section>
         
