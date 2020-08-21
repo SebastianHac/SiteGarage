@@ -5,6 +5,32 @@ document.addEventListener("reset", resetErr);
 
 //Variables Globales
 
+const service = [
+    
+        {
+            nomService: "Réparation crevaison de pneu",
+            tarif: 25 
+    },
+        {
+            nomService: "Diagnostic électroniques",
+            tarif: 54.78
+    },
+        {
+            nomService: "Diagnostic freinage",
+            tarif: 35
+    },
+        {
+            nomService: "Diagnostic tenue de route",
+            tarif: 29.99
+    },
+        {
+            nomService: "Diagnostic batterie et circuit de charge",
+            tarif: 15.99
+    }
+    
+];
+
+
 // tableaux
 
 
@@ -58,6 +84,9 @@ document.getElementById("date").setAttribute("value", aujDate);
         timeM -= 60;
         timeH += 1;
     }
+    if (timeM < 10){
+        timeM = "0" + timeM; // entre 30 et 40 problème résolu
+    }
     if (timeH >= 24){
         timeH -= 24;
     }
@@ -94,37 +123,90 @@ function onlyLetters(test){
     }
 }
 
+function resetErr(){
+    document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "";
+    document.querySelector("form.formulaire").querySelector("div#errNom").textContent = "";
+    document.querySelector("input#nom").style.borderColor = "";
+    document.querySelector("input#prenom").style.borderColor = "";
+}
+
+function validerForm(){
+    
+    let form = document.formClient;
+    let nom = form.Nom.value;
+    let prenom = form.Prenom.value;
+    let documentForm = document.querySelector("form.formulaire");
+    let errNom = documentForm.querySelector("div#errNom");
+    let errPrenom = documentForm.querySelector("div#errPrenom");
+    let inputNom = document.querySelector("input#nom");
+    let inputPrenom = document.querySelector("input#prenom");
+    
+    if (onlyLetters(nom) && onlyLetters(prenom)){
+        inputNom.style.borderColor = "#D8152D";
+        inputPrenom.style.borderColor = "#D8152D";
+        errPrenom.textContent = "Le Prénom ne peut contenir que des lettres!";
+        errNom.textContent = "Le Nom ne peut contenir que des lettres!";
+    }
+    
+    else if (onlyLetters(nom)){
+        inputNom.style.borderColor = "#D8152D";
+        inputPrenom.style.borderColor = "";
+        errPrenom.textContent = "";
+        errNom.textContent = "Le Nom ne peut contenir que des lettres!";
+    }
+    
+    else if (onlyLetters(prenom)){
+        inputPrenom.style.borderColor = "#D8152D";
+        inputNom.style.borderColor = "";
+        errPrenom.textContent = "Le Prénom ne peut contenir que des lettres!";
+        errNom.textContent = "";
+    }
+    
+    else if(document.querySelectorAll('input[type="checkbox"]:checked').length == 0){
+        inputNom.style.borderColor = "";
+        inputPrenom.style.borderColor = "";
+        errPrenom.textContent = "";
+        errNom.textContent = "";
+        alert("Vous devez au moins sélectionner un service !");
+    }
+    
+    else{
+        inputNom.style.borderColor = "";
+        inputPrenom.style.borderColor = "";
+        errPrenom.textContent = "";
+        errNom.textContent = "";
+        envoyerForm(nom, prenom, form);
+    }
+    
+}
 
 function envoyerForm(nom, prenom, form){
     
     let date = form.Date.value;
     let heure = form.Heure.value;
-    let cout = 0;
+    let cout = 0;// cout avec/ sans promo
+    let cout2 = 0;// cout sans promo
+    let codeCorrect = false;// booléen pour vérifier code promo
+    let coutPromo = "";// string pour texte "-15% de..."
     let code = form.Promo.value;
     let cb = document.getElementsByClassName("serv");
     
-    if (cb[0].checked){
-        tabServices.push("Réparation crevaison de pneu");
-        cout += 25;
+    for (let i in cb){
+        if (cb[i].checked){
+            tabServices.push(service[i].nomService);
+            cout += service[i].tarif;
+        }
     }
-    if (cb[1].checked){
-        tabServices.push("Diagnostic électroniques");
-        cout += 54.78;
-    }
-    if (cb[2].checked){
-        tabServices.push("Diagnostic freinage");
-        cout += 35;
-    }
-    if (cb[3].checked){
-        tabServices.push("Diagnostic tenue de route");
-        cout += 29.99;
-    }
-    if (cb[4].checked){
-        tabServices.push("Diagnostic batterie et circuit de charge");
-        cout += 15.99;
-    }
+    
+    cout2 = cout.toFixed(2);
+    
     if (code == "seb"){
         cout -= cout*(15/100);
+        codeCorrect = true;
+    }
+    
+    if (codeCorrect == true){
+        coutPromo = "(- 15% de " + cout2 + "€)";
     }
     
     cout = cout.toFixed(2);
@@ -152,7 +234,7 @@ function envoyerForm(nom, prenom, form){
 
         let documentDiv = document.querySelector("div.texte");
         documentDiv.querySelector("p.para1").textContent = prenom + " " + nom + " est attendu(e) le " + nomJour + " " + tabDate[2] + " " + tabMois[(tabDate[1])-1] + " à " + heure + " pour une examination de sa voiture.";
-        documentDiv.querySelector("p.para2").textContent = "Le(s) service(s) demandé(s) :" + " " + listServices + " sera/seront facturés à hauteur de " + cout + " €.";
+        documentDiv.querySelector("p.para2").textContent = "Le(s) service(s) demandé(s) :" + " " + listServices + " sera/seront facturés à hauteur de " + cout + " €." + coutPromo;
         
         var rdv = document.getElementById("RDV");
         rdv.scrollIntoView();
@@ -161,45 +243,4 @@ function envoyerForm(nom, prenom, form){
     
     tabServices = [];// pour remettre à zéro la liste des services demandés
     cout = 0;// pour remettre à zero le compteur après utilisation du formulaire
-}
-
-
-function resetErr(){
-    document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "";
-    document.querySelector("form.formulaire").querySelector("div#errNom").textContent = "";
-}
-
-
-function validerForm(){
-    
-    let form = document.formClient;
-    let nom = form.Nom.value;
-    let prenom = form.Prenom.value;
-    let documentForm = document.querySelector("form.formulaire");
-    
-    if (onlyLetters(nom) && onlyLetters(prenom)){
-        documentForm.querySelector("div#errPrenom").textContent = "Le Prénom ne peut contenir que des lettres!";
-        documentForm.querySelector("div#errNom").textContent = "Le Nom ne peut contenir que des lettres!";
-    }
-    
-    else if (onlyLetters(nom)){
-        documentForm.querySelector("div#errPrenom").textContent = "";
-        documentForm.querySelector("div#errNom").textContent = "Le Nom ne peut contenir que des lettres!";
-    }
-    
-    else if (onlyLetters(prenom)){
-        documentForm.querySelector("div#errPrenom").textContent = "Le Prénom ne peut contenir que des lettres!";
-        documentForm.querySelector("div#errNom").textContent = "";
-    }
-    
-    else if(document.querySelectorAll('input[type="checkbox"]:checked').length == 0){
-        alert("Vous devez au moins sélectionner un service !");
-    }
-    
-    else{
-        documentForm.querySelector("div#errPrenom").textContent = "";
-        documentForm.querySelector("div#errNom").textContent = "";
-        envoyerForm(nom, prenom, form);
-    }
-    
 }

@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="fr">
     
 	<head>
@@ -9,7 +10,9 @@
         
 		<link rel="stylesheet" href="css/ProjetGaragiste.css">
         
-		<script src="js/ProjetGaragiste.js"></script>
+        <script src="js/ProjetGaragiste.js"></script>
+        
+        <title>ProjetGaragiste</title>
         
 	</head>
     
@@ -31,21 +34,21 @@
         
         <section id="Formulaire">
         
-        <h1>Prenez rendez-vous !</h1>
+            <h1>Prenez rendez-vous !</h1>
             
-        <form class="formulaire" name="formClient" onSubmit="validerForm();return false">
+            <form class="formulaire" name="formClient" onSubmit="validerForm();return false">
             
                 <fieldset id="field1">
                     
                     <legend>Prise de Rendez-vous</legend>
                     
-                    <label for="nom">Nom</label>
+                    <label for="nom">Nom<em>*</em></label>
                     
                     <input type="text" id="nom" name="Nom" required><br><br>
                     
                     <div id="errNom"></div>
                     
-                    <label for="prenom">Prénom</label>
+                    <label for="prenom">Prénom<em>*</em></label>
                     
                     <input type="text" id="prenom" name="Prenom" required><br><br>
                     
@@ -64,7 +67,6 @@
                 <fieldset id="field2">
                     
                     <legend>Services (au choix)</legend>
-                    
                     
                     <input type="checkbox" class="serv" name="Reparationpneu">Réparation crevaison de pneu - (25€)<br><br>
                     
@@ -90,78 +92,121 @@
             </form>
             
             <img id="affichePromo" src="img/promo2.png">
+
             <div id="textPromo">&nbsp; CODE PROMOTIONNEL : "seb" &nbsp;</div>
+
             <img id="afficheOuvert" src="img/7sur7_4.png">
+
             <div id="heureOuverture">&nbsp; De 07:00 à 18:00 &nbsp;</div>
             
         </section>
         
         <section id="RDV">
             
-        <h1 class="RDV">Remplissez d'abord le formulaire !</h1>
+            <h1 class="RDV">Remplissez d'abord le formulaire !</h1>
             
             <div class="calendrier">
+
                 <p id="Mois"></p>
+
                 <p id="Jour"></p>
+
                 <p id="NumeroJour"></p>
+
                 <p id="Annee"></p>
+
             </div>
+
             <div class="texte">
+
                 <p class="para1"></p>
+
                 <p class="para2"></p>
+
             </div>
            
-        <div id="boxRappel">
-        <h2>Rappel :</h2>
+            <div id="boxRappel">
+
+                <h2>Rappel :</h2>
             
-            <ul>
+                <ul>
             
-                <li>Soyez présents 1/4 d'heure avant l'heure de rendez-vous !</li>
+                    <li>Soyez présents 1/4 d'heure avant l'heure de rendez-vous !</li>
 
-                <li>Le paiement sur place peut s'effectuer par cash, par bancontact ou par carte de crédit.</li>
+                    <li>Le paiement sur place peut s'effectuer par cash, par bancontact ou par carte de crédit.</li>
 
-                <li>Le port du masque est OBLIGATOIRE dans l'enceinte de notre établissement.</li>
+                    <li>Le port du masque est OBLIGATOIRE dans l'enceinte de notre établissement.</li>
 
-            </ul>  
-        </div>
+                </ul>
+
+            </div>
             
         </section>
         
         <section id="Informations">
         
-        <h1>Informations</h1>
+            <h1>Informations</h1>
             
-        <h2>Pourquoi devrais-je faire un ... ?</h2>
+            <h2>Pourquoi devrais-je faire un ... ?</h2>
             
-        <div id="elec">  
-            <h3>Diagnostic électronique</h3>
-            <ul>
-                <li>Votre véhicule est tombé en panne</li>
-                <li>L'un de vos voyant est allumé sans raison apparente</li>
-            </ul>
-        </div>
-        <div id="frein">
-            <h3>Diagnostic freinage</h3>
-            <ul>
-                <li>Le témoin de vos freins s'allume.</li>
-                <li>Votre voiture se déporte d'un côté lorsque vous freinez.</li>
-                <li>Votre pédale de frein est molle, sans résistance.</li>
-            </ul>
-        </div>
-        <div id="route">
-            <h3>Diagnostic tenue de route</h3>
-            <ul>
-                <li>Vous sentez que votre véhicule est instable lorsque vous prenez un virage</li>
-                <li>Vous ressentez de manière anormale les rebondissement de votre voiture lorsque vous empruntez une route cahoteuse</li>    
-            </ul>
-        </div>
-        <div id="batterie">
-            <h3>Diagnostic batterie et circuit de charge</h3>
-            <ul>
-                <li>L'éclairage de vos feux est faible</li>
-                <li>Le voyant de la batterie apparait</li>
-            </ul>
-        </div>
+            <div id="elec">  
+
+                <h3>Diagnostic électronique</h3>
+
+                <ul>
+
+                    <li>Votre véhicule est tombé en panne</li>
+
+                    <li>L'un de vos voyant est allumé sans raison apparente</li>
+
+                </ul>
+
+            </div>
+
+            <div id="frein">
+
+                <h3>Diagnostic freinage</h3>
+
+                <ul>
+
+                    <li>Le témoin de vos freins s'allume.</li>
+
+                    <li>Votre voiture se déporte d'un côté lorsque vous freinez.</li>
+
+                    <li>Votre pédale de frein est molle, sans résistance.</li>
+
+                </ul>
+
+            </div>
+
+            <div id="route">
+
+                <h3>Diagnostic tenue de route</h3>
+
+                <ul>
+
+                    <li>Vous sentez que votre véhicule est instable lorsque vous prenez un virage</li>
+
+                    <li>Vous ressentez de manière anormale les rebondissement de votre voiture lorsque vous empruntez une route cahoteuse</li>    
+
+                </ul>
+
+            </div>
+
+            <div id="batterie">
+
+                <h3>Diagnostic batterie et circuit de charge</h3>
+
+                <ul>
+
+                    <li>L'éclairage de vos feux est faible</li>
+
+                    <li>Le voyant de la batterie apparait</li>
+
+                </ul>
+
+            </div>
+
         </section>
         
 	</body>
