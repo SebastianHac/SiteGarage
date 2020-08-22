@@ -1,0 +1,200 @@
+<!doctype html>
+
+<html lang="fr">
+    
+	<head>
+        
+		<meta charset="utf-8">
+        
+		<title>Garage de Seb</title>
+        
+		<link rel="stylesheet" href="css/ProjetGaragiste.css">
+        
+        <script src="js/ProjetGaragiste.js"></script>
+        
+	</head>
+    
+	<body>
+        
+        <nav class="navbar">
+            
+            <ul>
+                
+              <li><a href="#Formulaire">Formulaire</a></li>
+                
+              <li><a href="#RDV">RDV</a></li>
+                
+              <li><a href="#Informations">Informations</a></li>
+                
+            </ul>
+            
+        </nav>
+        
+        <section id="Formulaire">
+        
+            <h1>Prenez rendez-vous !</h1>
+            
+            <form class="formulaire" name="formClient" onSubmit="validerForm();return false">
+            
+                <fieldset id="field1">
+                    
+                    <legend>Prise de Rendez-vous</legend>
+                    
+                    <label for="nom">Nom<em>*</em></label>
+                    
+                    <input type="text" id="nom" name="Nom" required><br><br>
+                    
+                    <div id="errNom"></div>
+                    
+                    <label for="prenom">Prénom<em>*</em></label>
+                    
+                    <input type="text" id="prenom" name="Prenom" required><br><br>
+                    
+                    <div id="errPrenom"></div>
+                    
+                    <label for="date">Date</label>
+                    
+                    <input type="date" id="date" name="Date" min="" value=""><br><br>
+                    
+                    <label for="time">Heure</label>
+                    
+                    <input type="time" id="time" name="Heure" min="" max="18:00" value=""><br><br>
+                    
+                </fieldset>
+            
+                <fieldset id="field2">
+                    
+                    <legend>Services (au choix)</legend>
+                    
+                    <input type="checkbox" class="serv" name="Reparationpneu">Réparation crevaison de pneu - (25€)<br><br>
+                    
+                    <input type="checkbox" class="serv" name="Diaelec">Diagnostics électroniques - (54,78€)<br><br>
+                    
+                    <input type="checkbox" class="serv" name="Diafrein">Diagnostic freinage - (35€)<br><br>
+                    
+                    <input type="checkbox" class="serv" name="Diatenue">Diagnostic tenue de route - (29,99€)<br><br>
+                    
+                    <input type="checkbox" class="serv" name="Diabatt">Diagnostic batterie et circuit de charge - (15,99€)<br><br>
+                    
+                    <label for="promo">Code Promo :</label>
+                    
+                    <input type="text" id="promo" name="Promo"><br><br>
+                    
+                    <input type="submit" class="bouton" value="Envoyer le formulaire">
+                    
+                    <input type="reset" class="bouton" value ="Réinitialiser" onclick="reset();">
+                        
+                    
+                </fieldset> 
+            
+            </form>
+            
+            <img id="affichePromo" src="img/promo2.png">
+
+            <div id="textPromo">&nbsp; CODE PROMOTIONNEL : "seb" &nbsp;</div>
+
+            <img id="afficheOuvert" src="img/7sur7_4.png">
+
+            <div id="heureOuverture">&nbsp; De 07:00 à 18:00 &nbsp;</div>
+            
+        </section>
+        
+        <section id="RDV">
+            
+            <h1 class="RDV">Remplissez d'abord le formulaire !</h1>
+            
+            <div class="calendrier">
+
+                <p id="Mois"></p>
+
+                <p id="Jour"></p>
+
+                <p id="NumeroJour"></p>
+
+                <p id="Annee"></p>
+
+            </div>
+
+            <div class="texte">
+
+                <p class="para1"></p>
+
+                <p class="para2"></p>
+
+            </div>
+           
+            <div id="boxRappel">
+
+            </div>
+            
+        </section>
+        
+        <section id="Informations">
+        
+            <h1>Informations</h1>
+            
+            <h2>Pourquoi devrais-je faire un ... ?</h2>
+            
+            <div id="elec">  
+
+                <h3>Diagnostic électronique</h3>
+
+                <ul>
+
+                    <li>Votre véhicule est tombé en panne.</li>
+
+                    <li>L'un de vos voyant est allumé sans raison apparente.</li>
+
+                </ul>
+
+            </div>
+
+            <div id="frein">
+
+                <h3>Diagnostic freinage</h3>
+
+                <ul>
+
+                    <li>Le témoin de vos freins s'allume.</li>
+
+                    <li>Votre voiture se déporte d'un côté lorsque vous freinez.</li>
+
+                    <li>Votre pédale de frein est molle, sans résistance.</li>
+
+                </ul>
+
+            </div>
+
+            <div id="route">
+
+                <h3>Diagnostic tenue de route</h3>
+
+                <ul>
+
+                    <li>Vous sentez que votre véhicule est instable lorsque vous prenez un virage.</li>
+
+                    <li>Vous ressentez de manière anormale les rebondissement de votre voiture lorsque vous empruntez une route cahoteuse.</li>    
+
+                </ul>
+
+            </div>
+
+            <div id="batterie">
+
+                <h3>Diagnostic batterie et circuit de charge</h3>
+
+                <ul>
+
+                    <li>L'éclairage de vos feux est faible.</li>
+
+                    <li>Le voyant de la batterie apparait.</li>
+
+                </ul>
+
+            </div>
+
+        </section>
+        
+	</body>
+    
+</html>
