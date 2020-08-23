@@ -11,3 +11,5 @@ Ce site est fais pour une personne dirigeant un garage et qui souhaite que ses c
 - Un bouton "ENVOYER LE FORMULAIRE" qui permet de récupérer les données et de les afficher dans la section "RDV"
 - Un bouton "REINITIALISER" qui permet d'effacer les données introduites dans le formulaire
 - Un Code promo à entrer qui offre une réduction sur le montant total (prix du/des service(s))
+
+Sébastian HACQUIN 1TL1
