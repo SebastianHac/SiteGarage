@@ -9,5 +9,5 @@ Ce site est fais pour une personne dirigeant un garage et qui souhaite que ses c
 - Une barre de navigation qui permet au client de choisir la section du site dans laquelle il veut se déplacer
 - Un formulaire de prise de rendez-vous + choix du service
 - Un bouton "ENVOYER LE FORMULAIRE" qui permet de récupérer les données et de les afficher dans la section "RDV"
-- Un bouton "REINITIALISER" qui permet d'effacer les données introduite dans le formulaire
+- Un bouton "REINITIALISER" qui permet d'effacer les données introduites dans le formulaire
 - Un Code promo à entrer qui offre une réduction sur le montant total (prix du/des service(s))
