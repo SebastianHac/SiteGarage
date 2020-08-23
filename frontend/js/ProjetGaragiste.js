@@ -55,9 +55,9 @@ let jj = auj.getDate();
 let mm = auj.getMonth()+1; // car Janvier vaut 0
 let aaaa = auj.getFullYear();
     
-let jj2 = demain.getDate();
-let mm2 = demain.getMonth();
-let aaaa2 = demain.getFullYear();
+let jj2 = demain.getDate();// 9
+let mm2 = demain.getMonth();// 8
+let aaaa2 = demain.getFullYear();// 2020
 
     if (jj<10){// or jj.length < 2
         jj = "0" + jj;
@@ -122,7 +122,7 @@ function onlyLetters(test){
     }
 }
 /**
- * Permet de supprimer le contenu de balises HTML et de règles CSS
+ * Permet de supprimer le contenu de balises HTML et les valeurs de certaines propriétés CSS
  */
 function resetErr(){
     document.querySelector("form.formulaire").querySelector("div#errPrenom").textContent = "";
@@ -144,36 +144,32 @@ function validerForm(){
     let inputNom = document.querySelector("input#nom");
     let inputPrenom = document.querySelector("input#prenom");
     
-    if (onlyLetters(nom) && onlyLetters(prenom)){
+    if (onlyLetters(nom)){
         inputNom.style.borderColor = "#D8152D";
-        inputPrenom.style.borderColor = "#D8152D";
-        errPrenom.textContent = "Le Prénom ne peut contenir que des lettres!";
         errNom.textContent = "Le Nom ne peut contenir que des lettres!";
     }
-    
-    else if (onlyLetters(nom)){
-        inputNom.style.borderColor = "#D8152D";
-        inputPrenom.style.borderColor = "";
-        errPrenom.textContent = "";
-        errNom.textContent = "Le Nom ne peut contenir que des lettres!";
-    }
-    
-    else if (onlyLetters(prenom)){
-        inputPrenom.style.borderColor = "#D8152D";
+    else {
         inputNom.style.borderColor = "";
-        errPrenom.textContent = "Le Prénom ne peut contenir que des lettres!";
         errNom.textContent = "";
     }
     
-    else if(document.querySelectorAll('input[type="checkbox"]:checked').length == 0){
-        inputNom.style.borderColor = "";
+    
+    if (onlyLetters(prenom)){
+        inputPrenom.style.borderColor = "#D8152D";
+        errPrenom.textContent = "Le Prénom ne peut contenir que des lettres!";
+    }
+    else {
         inputPrenom.style.borderColor = "";
         errPrenom.textContent = "";
-        errNom.textContent = "";
+    }
+    
+    
+    if(document.querySelectorAll('input[type="checkbox"]:checked').length == 0){
         alert("Vous devez au moins sélectionner un service !");
     }
     
-    else{
+    
+    if (! onlyLetters(nom) && ! onlyLetters(prenom) && document.querySelectorAll('input[type="checkbox"]:checked').length > 0){
         inputNom.style.borderColor = "";
         inputPrenom.style.borderColor = "";
         errPrenom.textContent = "";
@@ -193,12 +189,11 @@ function envoyerForm(nom, prenom, form){
 
     /* RECUPERER LES INFORMATIONS DU FORMULAIRES + TRANSFORMATION */
 
-
+    
     let date = form.Date.value;
     let heure = form.Heure.value;
     let cout = 0;// cout avec/sans promo
     let cout2 = 0;// cout sans promo
-    let codeCorrect = false;// booléen pour vérifier code promo
     let coutPromo = "";// string pour texte "-15% de..."
     let code = form.Promo.value;
     let cb = document.getElementsByClassName("serv");
@@ -220,15 +215,10 @@ function envoyerForm(nom, prenom, form){
 
     if (code == "seb"){
         cout -= cout*(15/100);
-        codeCorrect = true;
-    }
-    
-
-
-    if (codeCorrect == true){
         coutPromo = "(- 15% de " + cout2 + "€)";
     }
-    
+
+
 
     cout = cout.toFixed(2);
 
@@ -252,7 +242,7 @@ function envoyerForm(nom, prenom, form){
     /* CALENDRIER */
 
     let documentSection = document.querySelector("section#RDV");
-    documentSection.querySelector("h1.RDV").textContent = "À très bientôt !";
+    documentSection.querySelector("h1#RDV").textContent = "À très bientôt !";
     
     document.getElementById("Mois").innerHTML = nomMois;
     document.getElementById("Jour").innerHTML = tabDate[3];
@@ -261,9 +251,9 @@ function envoyerForm(nom, prenom, form){
 
     /* TEXTE CLIENT */
 
-    let documentDiv = document.querySelector("div.texte");
-    documentDiv.querySelector("p.para1").textContent = prenom + " " + nom + " est attendu(e) le " + nomJour + " " + tabDate[2] + " " + tabMois[(tabDate[1])-1] + " à " + heure + " pour une examination de sa voiture.";
-    documentDiv.querySelector("p.para2").textContent = "Le(s) service(s) demandé(s) :" + " " + listServices + " sera/seront facturés à hauteur de " + cout + " €." + coutPromo;
+    let documentDiv = document.querySelector("div#texte");
+    documentDiv.querySelector("p#para1").textContent = prenom + " " + nom + " est attendu(e) le " + nomJour + " " + tabDate[2] + " " + nomMois + " à " + heure + " pour une examination de sa voiture.";
+    documentDiv.querySelector("p#para2").textContent = "Le(s) service(s) demandé(s) :" + " " + listServices + " sera/seront facturés à hauteur de " + cout + " €." + coutPromo;
 
     /* RAPPEL */
 

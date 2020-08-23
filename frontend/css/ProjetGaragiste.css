@@ -56,7 +56,7 @@ section{
 }
 
 section h1{
-    font-size: 40px;
+    font-size: 2.5em;
     font-style: italic;
 }
 
@@ -64,7 +64,45 @@ section h1{
 --------------*/
 
 section#Formulaire{
-    align-items: center;  
+    align-items: center;
+}
+
+form.formulaire {
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: rgba(4,92,204,0.4);
+}
+
+form fieldset#field1 label{
+    display: block;
+    padding: 0px 0px 10px 0px;
+}
+
+form fieldset#field1 input {
+    display: block;
+    width: 97%;
+
+}
+
+form fieldset#field2 input.bouton {
+    border: 0;
+    background-color: #0477CC;
+    color: white;
+    padding: 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+form fieldset#field2 input.bouton:hover{
+    background-color: #045CCC;
+}
+
+form fieldset div#errNom, div#errPrenom {
+    display: block;
+    margin: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #D8152D;
 }
 
 section#Formulaire img#affichePromo{
@@ -101,50 +139,6 @@ section#Formulaire div#textPromo {
     border: solid #D8152D;
 }
 
-form.formulaire {
-    border: 2px solid black;
-    border-radius: 5px;
-    background-color: rgba(4,92,204,0.4);
-}
-
-form fieldset#field1 label{
-    display: block;
-    padding: 0px 0px 15px 0px;
-}
-
-form fieldset#field1 input {
-    display: block;
-    width: 97%;
-}
-
-form fieldset#field1 div {
-    font-size: 13px;
-}
-
-form fieldset#field2 input.bouton {
-    border: 0;
-    background-color: #0477CC;
-    color: white;
-    padding: 10px;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-form fieldset#field2 input.bouton:hover{
-    background-color: #045CCC;
-}
-
-form fieldset div#errNom, div#errPrenom {
-    color: #D8152D;
-}
-
-div#heureOuverture {
-    font-size: 30px;
-    color: white;
-    background-color: #D8152D;
-}
-
-
 /* RDV (Calendrier)
 --------------------*/
 
@@ -152,7 +146,7 @@ section#RDV{
     align-items: center;
 }
 
-.calendrier {
+#calendrier {
     text-align: center;
     width: 270px;
     background: whitesmoke;
@@ -212,14 +206,21 @@ section#Informations h1, h2{
     top: 50px;
 }
 
+section#Informations h3{
+    margin: 0px 0px 0px 20px;
+    text-decoration: underline;
+}
+
 section#Informations ul li{
     list-style: circle;
 }
 
 section#Informations div#elec, #route{
     background-color: rgba(103,181,216,0.4);
+    height: 150px;
 }
 
 section#Informations div#frein, #batterie{
     background-color: rgba(21,148,216,0.4);
+    height: 150px;
 }
